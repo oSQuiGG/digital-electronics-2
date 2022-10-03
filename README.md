@@ -19,17 +19,24 @@
 
 
 #define LED_GREEN PB5 
+
 #define PB5 13  
 
 
 
 #define MILI_DELAY 300 // duration between dot and comma
+
 #define SHORT_DELAY 300 //duration of dot in milliseconds
+
 #define LONG_DELAY  900 // duration of commma in milliseconds
+
 int main(void)
+
 {
     uint8_t led_value = LOW;  // Local variable to keep LED status
+    
     // Set pin where on-board LED is connected as output
+   
     pinMode(LED_GREEN, OUTPUT);
 
     // Infinite loop
