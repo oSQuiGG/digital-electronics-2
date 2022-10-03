@@ -2,13 +2,7 @@
 ## Laboratory exercise
 ### Arduino
 
-**This is a bold text**
 
-*This text is italicized*
-
-
-
-![alt text](https://myoctocat.com/assets/images/base-octocat.svg)
 
 # Lab 1: Oscar Pérez Marin
 
