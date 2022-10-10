@@ -7,9 +7,9 @@
    | **DDRB** | **PORTB** | **Direction** | **Internal pull-up resistor** | **Description** |
    | :-: | :-: | :-: | :-: | :-- |
    | 0 | 0 | input | no | Tri-state, high-impedance |
-   | 0 | 1 | | | |
-   | 1 | 0 | | | |
-   | 1 | 1 | | | |
+   | 0 | 1 | input | yes| pull-up resistor activated|
+   | 1 | 0 | output| no| low level output|
+   | 1 | 1 | output| no| high level output|
 
 ### GPIO library
 
@@ -25,4 +25,5 @@
 
 3. Scheme of traffic light application with one red/yellow/green light for cars, one red/green light for pedestrians, and one push button. Connect AVR device, LEDs, resistors, push button (for pedestrians), and supply voltage. The image can be drawn on a computer or by hand. Always name all components and their values!
 
-   ![your figure]()
+  ![71c3cea5-7387-4a5b-9fe1-62c571d97566](https://user-images.githubusercontent.com/114435572/194917391-a9a44caf-5b9d-42aa-8914-84ae61c7163c.jpg)
+
