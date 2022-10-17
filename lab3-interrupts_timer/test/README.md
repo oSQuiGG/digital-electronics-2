@@ -1,4 +1,4 @@
-# Lab 3: YOUR_FIRSTNAME LASTNAME
+# Lab 3: Oscar Pérez Marín
 
 ### Overflow times
 
@@ -6,9 +6,9 @@
 
    | **Module** | **Number of bits** | **1** | **8** | **32** | **64** | **128** | **256** | **1024** |
    | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: |
-   | Timer/Counter0 | 8  | 16u | 128u | -- | | -- | | |
-   | Timer/Counter1 | 16 |     |      | -- | | -- | | |
-   | Timer/Counter2 | 8  |     |      |    | |    | | |
+   | Timer/Counter0 | 8  | 16us | 128us | -- | 1ms | -- | 4ms | 16ms |
+   | Timer/Counter1 | 16 | 4ms | 33ms | -- | 262ms | -- | 1s | 4.2s |
+   | Timer/Counter2 | 8  | 16us | 128us | 512us | 1ms | 2ms | 4ms | 16ms |
 
 ### Interrupts
 
@@ -20,4 +20,26 @@
     * @note  t_OVF = 1/F_CPU * prescaler * 2^n where n = 8, F_CPU = 16 MHz
     */
    // WRITE YOUR CODE HERE
-   ```
+   
+   #define TIM2_overflow_stop()   TCCR2B &= ~((1<<CS22) | (1<<CS21) | (1<<CS20)); 
+   /** @brief Set overflow 16us, prescaler 001 --> 1 */
+   #define TIM2_overflow_16us     TCCR2B &= ~((1<<CS22) | (1<<CS21)); TCCR2B |= (1<<CS20);
+   /** @brief Set overflow 128us, prescaler 010 --> 8 */
+   #define TIM2_overflow_128us    TCCR2B &= ~((1<<CS22) | (1<<CS20)); TCCR2B |= (1<<CS21);
+   /** @brief Set overflow 512us, prescaler 011 --> 32 */
+   #define TIM2_overflow_512us    TCCR2B &= ~((1<<CS22); TCCR2B |= (1<<CS21) | (1<<CS20);
+   /** @brief Set overflow 1ms, prescaler 100 --> 64 */
+   #define TIM2_overflow_1ms      TCCR2B &= ~((1<<CS21) | (1<<CS20)); TCCR2B |= (1<<CS22);
+   /** @brief Set overflow 2ms, prescaler 101 --> 128 */
+   #define TIM2_overlofw_2ms      TCCR2B &= ~(1<<CS21); TCCR2B |= (1<<CS22) | (1<<CS20);
+   /** @brief Set overflow 4ms, prescaler 110 --> 256 */
+   #define TIM2_overflow_4ms      TCCR2B &= ~(1<<CS20); TCCR2B |= (1<<CS22)) |(1<<CS21);
+   /** @brief Set overflow 16ms, prescaler 111 --> 1024 */
+   #define TIM2_overflow_16ms     TCCR2B |= (1<<CS22) | (1<<CS21) | (1<<CS20);
+   
+   
+   /** @brief Enable overflow interrupt, 1 --> enable */
+   #define TIM2_overflow_interrupt_enable()  TIMSK2 |= (1<<TOIE2);
+   /** @brief Disable overflow interrupt, 0 --> disable */
+   #define TIM2_overflow_interrupt_disable() TIMSK2 &= ~(1<<TOIE2);
+  
