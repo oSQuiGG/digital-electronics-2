@@ -1,4 +1,4 @@
-# Lab 5: INSERT_YOUR_FIRSTNAME INSERT_YOUR_LASTNAME
+# Lab 5: Oscar Pérez Marin
 
 ### Analog-to-Digital Conversion
 
@@ -19,8 +19,10 @@ Consider an application for temperature measurement. Use analog temperature sens
 
 2. Draw a schematic of temperature meter. The image can be drawn on a computer or by hand. Always name all components and their values.
 
-   ![your figure]()
+   ![ESQUEMA](https://user-images.githubusercontent.com/114435572/199100614-d2b8000e-2083-4457-be2a-c4f0343a0ba4.png)
+
+
 
 3. Draw two flowcharts for `main` function and `TIMER1_OVF_vect` interrupt service routine which overflows every 1&nbsp;sec. The image can be drawn on a computer or by hand. Use clear descriptions of the individual steps of the algorithms.
 
-   ![your figure]()
+   ![133ff72d-43f1-482e-a1bf-df08f37ad7bf](https://user-images.githubusercontent.com/114435572/199100474-427dbc70-4a05-4e04-a2d2-2398439a076b.jpg)
