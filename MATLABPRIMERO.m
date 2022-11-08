@@ -1,5 +1,8 @@
 close all;
 clear all;
+
+
+
 fc=100;
 fs=1000;
 t=0:1/fs:1;
