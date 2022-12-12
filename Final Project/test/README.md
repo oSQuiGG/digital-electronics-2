@@ -12,27 +12,39 @@ The goal of the project is cooperation in pairs, further study of the topic, des
 
 * The source code for the AVR must be written in C and/or Assembly and must be implementable on Arduino Uno board using toolchains from the semester, ie PlatformIO and not in the Arduino-style. No other development tools are allowed.
 
-## Recommended GitHub repository structure
-
-   ```c
-   YOUR_PROJECT        // PlatfomIO project
-   ├── include         // Included files
-   ├── lib             // Libraries
-   ├── src             // Source file(s)
-   │   └── main.c
-   ├── test            // No need this
-   ├── platformio.ini  // Project Configuration File
-   └── README.md       // Report of this project
-   ```
-
-## Recommended README.md file structure
-
 ### Team members
 
 * Oscar Pérez Marín(responsible for xxx)
 * Jesús Santos Gravalosa (responsible for xxx)
 
+## Project structure
+
+Our project has this structure:
+
+
+```c
+├── include
+│   └── timer.h
+├── lib
+│   └── lcd
+│   │   ├── lcd.c
+│   │   ├── lcd.h
+│   │   └── lcd_definitions.h
+│   └── gpio
+|       ├── gpio.c
+|       └── gpio.h
+└── src
+    └── main.c
+```
+   
+
+
 ## Hardware description
+
+### Arduino Uno pinout 
+
+![arduino pinout](https://user-images.githubusercontent.com/114435572/207163933-46f9533f-72f0-4ba1-b027-babfba33d15f.jpg)
+
 
 ### Analog joy-stick 
 
@@ -69,15 +81,102 @@ Connections:
 ### Digilent PmodCLP LCD module
 
 The Digilent Pmod CLP is a 16×2 character LCD module that uses a 8-bit parallel data interface to let system boards display up to 32 different characters out of over 200 possible options.
+The PmodCLP communicates with the host board via the GPIO protocol. This particular module requires specific timings in order to program the KS0066 correctly, as per the KS0066 datasheet. These timings are described after the pinout description table shown below:
 
+![PINOUT LCD](https://user-images.githubusercontent.com/114435572/207163454-a2eae84c-fa1d-4b18-bea2-987df31d4849.PNG)
 
+![LCD](https://user-images.githubusercontent.com/114435572/207163576-3dc8e387-9b37-4277-9bac-b12a0e2dd0f5.PNG)
 
-
+Connections: 
+   
+   - GND to GND 
+   - +5V  to +5V
+   - DB4: data bit 4 to digital pin PD4
+   - DB5: data bit 5 to digital pin PD5
+   - DB6: data bit 6 to digital pin PD6
+   - DB7: data bit 7 to digital pin PD7
+   - RS: Register Select (High for Data Transfer, Low for Instruction Transfer) to digital pin PB0
+   - E: Read/Write Enable (High for Read, falling edge writes data) to digital pin PB1
+   
+   
 ### Schematic
 
-Insert descriptive text and schematic(s) of your implementation.
+This is the schematic with all the connections already mentioned: 
+
+![Schematic](https://user-images.githubusercontent.com/114435572/207170820-0523690d-826e-464c-94c5-e5af7bd5696e.png)
 
 ## Software description
+
+### Libraries
+
+We used two additional libraries, LCD library and GPIO library.
+
+### GPIO library
+
+At the most basic level, GPIO refers to a set of pins on your computer’s mainboard or add-on card. These pins can send or receive electrical signals, but they aren’t designed for any specific purpose. This is why they’re called “general-purpose” IO.
+
+Useful functions of this library: 
+
+| **Return** | **Function name** | **Function parameters** | **Description** |
+   | :-: | :-- | :-- | :-- |
+   | `void` | `GPIO_mode_output` | `volatile uint8_t *reg, uint8_t pin` | Configure one output pin |
+   | `void` | `GPIO_mode_input_pullup` | `volatile uint8_t *reg, uint8_t pin` | Configure one input pin and enable pull-up resistor |
+   | `void` | `GPIO_write_low` | `volatile uint8_t *reg, uint8_t pin` | Write one pin to low value |
+   | `void` | `GPIO_write_high` | `volatile uint8_t *reg, uint8_t pin` | Write one pin to high value |
+   | `uint8_t` | `GPIO_read` | `volatile uint8_t *reg, uint8_t pin` | Read a value from input pin |
+   
+   
+gpio.c: https://github.com/oSQuiGG/digital-electronics-2/blob/278a2b2c9639c20bf2e7b7b125e14eb4b0869440/Final%20Project/lib/gpio/gpio.c
+
+gpio.h: https://github.com/oSQuiGG/digital-electronics-2/blob/278a2b2c9639c20bf2e7b7b125e14eb4b0869440/Final%20Project/lib/gpio/gpio.h
+
+
+### LCD library
+
+This library allows an Arduino board to control LiquidCrystal displays (LCDs) based on the Hitachi HD44780 (or a compatible) chipset, which is found on most text-based LCDs. 
+
+Useful functions of this library:
+
+- void 	lcd_init (uint8_t dispAttr)
+ 	Initialize display and select type of cursor.
+ 
+- void 	lcd_clrscr (void)
+ 	Clear display and set cursor to home position.
+ 
+- void 	lcd_home (void)
+ 	Set cursor to home position.
+ 
+- void 	lcd_gotoxy (uint8_t x, uint8_t y)
+ 	Set cursor to specified position.
+ 
+- void 	lcd_putc (char c)
+ 	Display character at current cursor position.
+ 
+- void 	lcd_puts (const char *s)
+ 	Display string without auto linefeed.
+ 
+- void 	lcd_puts_p (const char *progmem_s)
+ 	Display string from program memory without auto linefeed.
+ 
+- void 	lcd_command (uint8_t cmd)
+ 	Send LCD controller instruction command.
+ 
+- void 	lcd_data (uint8_t data)
+ 	Send data byte to LCD controller.
+ 
+
+lcd.c: https://github.com/oSQuiGG/digital-electronics-2/blob/278a2b2c9639c20bf2e7b7b125e14eb4b0869440/Final%20Project/lib/lcd/lcd.c
+
+lcd.h: https://github.com/oSQuiGG/digital-electronics-2/blob/278a2b2c9639c20bf2e7b7b125e14eb4b0869440/Final%20Project/lib/lcd/lcd.h
+
+lcd_definitions.h: https://github.com/oSQuiGG/digital-electronics-2/blob/278a2b2c9639c20bf2e7b7b125e14eb4b0869440/Final%20Project/lib/lcd/lcd_definitions.h
+
+### Source files
+
+main.c: Poner mañana
+
+
+
 
 Put flowchats of your algorithm(s). Write descriptive text of your libraries and source files. Put direct links to these files in `src` or `lib` folders.
 
@@ -87,5 +186,9 @@ Insert a link to a short video with your practical implementation example (1-3 m
 
 ## References
 
-1. Write your text here.
-2. ...
+Rotary encoder in Arduino: https://electropeak.com/learn/rotary-encoder-how-it-works-how-to-use-with-arduino/
+
+Analog Joy-stick in Arduino: https://arduinogetstarted.com/tutorials/arduino-joystick
+
+Digilent PmodCLP LCD module: https://digilent.com/reference/_media/pmod:pmod:pmodclp_rm.pdf
+
