@@ -202,6 +202,8 @@ main.c: https://github.com/oSQuiGG/digital-electronics-2/blob/1e44f9dc320f6a2bab
 
 https://user-images.githubusercontent.com/114435572/207458691-8705e085-831c-49f3-a408-f8202a08578c.mp4
 
+https://www.youtube.com/shorts/UVWIxD-Jdzc
+
 
 
 ## References
