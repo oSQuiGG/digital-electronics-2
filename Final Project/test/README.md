@@ -14,8 +14,8 @@ The goal of the project is cooperation in pairs, further study of the topic, des
 
 ### Team members
 
-* Oscar Pérez Marín(responsible for xxx)
-* Jesús Santos Gravalosa (responsible for xxx)
+* Oscar Pérez Marín
+* Jesús Santos Gravalosa 
 
 ## Project structure
 
@@ -107,6 +107,22 @@ This is the schematic with all the connections already mentioned:
 
 ## Software description
 
+### Flowcharts
+
+### Main flowchart
+
+![b786f2bb-2bfc-4b94-9a25-5d5690e9048f](https://user-images.githubusercontent.com/114435572/207454055-9d200ccc-da73-4cdc-8056-e949e9bb1380.jpg)
+
+### Timer flowchart
+
+![timer2](https://user-images.githubusercontent.com/114435572/207454121-3e43990d-6de3-4c3d-a445-4475d79c8faf.png)
+
+### ADC flowchart
+
+![ADC](https://user-images.githubusercontent.com/114435572/207455737-c28290e5-fca4-4893-a81b-477b8767e92f.png)
+
+
+
 ### Libraries
 
 We used two additional libraries, LCD library and GPIO library.
@@ -173,16 +189,20 @@ lcd_definitions.h: https://github.com/oSQuiGG/digital-electronics-2/blob/278a2b2
 
 ### Source files
 
-main.c: Poner mañana
+main.c: https://github.com/oSQuiGG/digital-electronics-2/blob/1e44f9dc320f6a2bab06ce2787f75f7d7fd2990b/Final%20Project/src/main.c
 
 
 
 
-Put flowchats of your algorithm(s). Write descriptive text of your libraries and source files. Put direct links to these files in `src` or `lib` folders.
+
 
 ## Video
 
-Insert a link to a short video with your practical implementation example (1-3 minutes, e.g. on YouTube).
+
+
+https://user-images.githubusercontent.com/114435572/207458691-8705e085-831c-49f3-a408-f8202a08578c.mp4
+
+
 
 ## References
 
